@@ -3,14 +3,7 @@
     <h1>Order #<%= @order.id %></h1>
   </header>
   <div class="order-summary jumbotron">
-    <h4>Thank you for your order!</h4>
-    <h3>Order Total: <%= @order.total_cents / 100.00 %></h3>
-    <h3>Order email: <%= @order.email %></h3>
-    <%- @lineItems.each { |item| %>
-    <h3>Line Total: <%= item.total_price_cents / 100.00 %></h3>
-    <h3>item price: <%= item.item_price_cents / 100.00 %></h3>
-    <h3>item quant: <%= item.quantity  %></h3>
-    <%- } %>
+    <h1>Thank you for your order!</h1>
   </div>
 
   <div class="panel panel-default items">
@@ -24,8 +17,9 @@
       </tr>
     </thead>
     <tbody>
-
-    
+    <% @order.line_items.each do |item| %>
+      <%= render 'item', item: item %>
+    <% end %>
     </tbody>
     <tfoot>
       <tr>
